@@ -72,31 +72,31 @@ export default function Page() {
     let position;
     let tooClose;
     const minDistance = 15; // Minimum distance in 'vw' or 'vh'
-  
+
     do {
       position = {
         top: `${Math.random() * 90}vh`, // Keep within 90% of viewport height
         left: `${Math.random() * 90}vw`, // Keep within 90% of viewport width
       };
-  
+
       tooClose = existingPositions.some((p) => {
         const dx = Math.abs(parseFloat(p.left) - parseFloat(position.left));
         const dy = Math.abs(parseFloat(p.top) - parseFloat(position.top));
         return Math.sqrt(dx * dx + dy * dy) < minDistance;
       });
     } while (tooClose);
-  
+
     return position;
   };
-  
+
   const handleMouseEnterYes = () => {
     const gifs = [];
     const positions = [];
-  
+
     for (let i = 0; i < 10; i++) {
       const newPosition = generateRandomPositionWithSpacing(positions);
       positions.push(newPosition);
-  
+
       gifs.push({
         id: `heart-${i}`,
         src: heartGif,
@@ -106,18 +106,18 @@ export default function Page() {
         },
       });
     }
-  
+
     setFloatingGifs(gifs);
   };
-  
+
   const handleMouseEnterNo = () => {
     const gifs = [];
     const positions = [];
-  
+
     for (let i = 0; i < 10; i++) {
       const newPosition = generateRandomPositionWithSpacing(positions);
       positions.push(newPosition);
-  
+
       gifs.push({
         id: `sad-${i}`,
         src: sadGif,
@@ -127,24 +127,24 @@ export default function Page() {
         },
       });
     }
-  
+
     setFloatingGifs(gifs);
   };
-  
+
   const handleMouseLeave = () => {
     setFloatingGifs([]); // floating GIFs on mouse leave
   };
 
   // This ensures the "Yes" gif keeps restarting and playing infinitely
   useEffect(() => {
-    if (gifRef.current && yesPressed && noCount>3) {
+    if (gifRef.current && yesPressed && noCount > 3) {
       gifRef.current.src = YesGifs[currentGifIndex];
     }
   }, [yesPressed, currentGifIndex]);
 
   // Use effect to change the Yes gif every 5 seconds
   useEffect(() => {
-    if (yesPressed && noCount>3) {
+    if (yesPressed && noCount > 3) {
       const intervalId = setInterval(() => {
         setCurrentGifIndex((prevIndex) => (prevIndex + 1) % YesGifs.length);
       }, 5000); // Change gif every 5 seconds
@@ -177,17 +177,17 @@ export default function Page() {
       playMusic(NoMusic[nextSongIndex], NoMusic);
     }
   };
-  
+
   const handleYesClick = () => {
-    if(!popupShown){ // Only for Swal Fire Popup
+    if (!popupShown) { // Only for Swal Fire Popup
       setYesPressed(true);
     }
-    if(noCount>3){
+    if (noCount > 3) {
       setYesPressed(true);
       playMusic(YesMusic[0], YesMusic); // Play the first "Yes" music by default
     }
   };
-  
+
   const playMusic = (url, musicArray) => {
     if (currentAudio) {
       currentAudio.pause(); // Stop the currently playing song
@@ -240,7 +240,7 @@ export default function Page() {
       "Don't leave me hanging! 😬",
       "Plsss? :( You're breaking my heart 💔",
     ];
-    
+
     return phrases[Math.min(noCount, phrases.length - 1)];
   };
 
@@ -270,7 +270,7 @@ export default function Page() {
       setYesPressed(false);
     }
   }, [yesPressed, noCount, popupShown]);
-  
+
   useEffect(() => {
     if (yesPressed && noCount > 3 && !yespopupShown) {
       Swal.fire({
@@ -319,7 +319,7 @@ export default function Page() {
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
       <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
-        {yesPressed && noCount>3 ? (
+        {yesPressed && noCount > 3 ? (
           <>
             <img
               ref={gifRef}
@@ -328,7 +328,7 @@ export default function Page() {
               alt="Yes Response"
             />
             <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You !!!</div>
-            <div  className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div> 
+            <div className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div>
             <WordMareque />
           </>
         ) : (
@@ -383,28 +383,11 @@ export default function Page() {
         >
           {isMuted ? <BsVolumeMuteFill size={26} /> : <BsVolumeUpFill size={26} />}
         </button>
-        <Footer />
       </div>
     </>
   );
 }
 
-const Footer = () => {
-  return (
-    <a
-      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/UjjwalSaini07"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Made with{" "}
-      <span role="img" aria-label="heart">
-        ❤️
-      </span>
-      {" "}by Ujjwal
-    </a>
-  );
-};
 
 
 
