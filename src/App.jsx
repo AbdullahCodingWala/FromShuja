@@ -327,31 +327,39 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
+      <div className="overflow-y-auto flex flex-col items-center justify-center pt-4 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-10">
         {yesPressed && noCount > 3 ? (
-          <div className="flex flex-col items-center justify-center animate__animated animate__fadeIn">
+          <div className="flex flex-col items-center justify-center w-full max-w-4xl px-4 animate__animated animate__fadeIn">
             {!giftOpened ? (
-              <div
-                className="cursor-pointer transform transition-transform hover:scale-110 active:scale-95"
-                onClick={() => setGiftOpened(true)}
-              >
-                <img
-                  src={giftBox}
-                  className="h-[250px] animate-bounce"
-                  alt="Gift Box"
-                />
-                <p className="text-xl font-bold text-rose-600 mt-4 text-center animate-pulse">Tap to open your gift! 🎁</p>
+              <div className="flex flex-col items-center">
+                <div className="text-4xl md:text-6xl font-bold mb-6 text-center" style={{ fontFamily: "Charm, serif", fontWeight: "700" }}>I Love You !!! ❤️</div>
+                <div
+                  className="cursor-pointer transform transition-all hover:scale-105 active:scale-95"
+                  onClick={() => setGiftOpened(true)}
+                >
+                  <img
+                    src={giftBox}
+                    className="h-[200px] md:h-[300px] animate-bounce"
+                    alt="Gift Box"
+                  />
+                  <p className="text-xl font-bold text-rose-600 mt-4 text-center animate-pulse">Tap to open your gift! 🎁</p>
+                </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center max-w-4xl px-4 text-center animate__animated animate__zoomIn">
-                <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="flex flex-col items-center justify-center w-full animate__animated animate__zoomIn pt-10">
+                <div className="text-4xl md:text-6xl font-bold mb-8 text-rose-600 text-center" style={{ fontFamily: "Charm, serif" }}>
+                  I Love You !!! ❤️
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 md:gap-6 mb-8 w-full">
                   {GiftPics.map((pic, index) => (
-                    <img
-                      key={index}
-                      src={pic}
-                      className="h-32 md:h-64 w-full object-cover rounded-2xl shadow-xl border-4 border-white transform hover:scale-105 transition-all"
-                      alt={`Memory ${index + 1}`}
-                    />
+                    <div key={index} className="aspect-square w-full overflow-hidden rounded-2xl shadow-xl border-4 border-white transform hover:rotate-2 transition-all">
+                      <img
+                        src={pic}
+                        className="w-full h-full object-cover"
+                        alt={`Memory ${index + 1}`}
+                      />
+                    </div>
                   ))}
                 </div>
                 <div className="bg-white/40 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50">
