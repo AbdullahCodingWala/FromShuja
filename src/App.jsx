@@ -72,6 +72,7 @@ export default function Page() {
   const [popupShown, setPopupShown] = useState(false);
   const [yespopupShown, setYesPopupShown] = useState(false);
   const [giftOpened, setGiftOpened] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const gifRef = useRef(null); // Ref to ensure gif plays infinitely
   const yesButtonSize = noCount * 16 + 16;
@@ -327,33 +328,49 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="overflow-y-auto flex flex-col items-center justify-center pt-4 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-10">
+      <div className="overflow-y-auto flex flex-col items-center pt-4 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-10 px-4">
         {yesPressed && noCount > 3 ? (
-          <div className="flex flex-col items-center justify-center w-full max-w-4xl px-4 animate__animated animate__fadeIn">
+          <div className="flex flex-col items-center justify-center w-full max-w-lg animate__animated animate__fadeIn mt-10">
             {!giftOpened ? (
-              <div className="flex flex-col items-center">
-                <div className="text-4xl md:text-6xl font-bold mb-6 text-center" style={{ fontFamily: "Charm, serif", fontWeight: "700" }}>I Love You !!! ❤️</div>
+              <div className="flex flex-col items-center w-full">
+                <img
+                  ref={gifRef}
+                  className="h-[180px] md:h-[230px] rounded-lg mb-6 shadow-lg"
+                  src={YesGifs[currentGifIndex]}
+                  alt="Sticker"
+                />
+                <div className="text-3xl md:text-5xl font-bold mb-6 text-center text-rose-600" style={{ fontFamily: "Charm, serif" }}>I Love You !!! ❤️</div>
                 <div
                   className="cursor-pointer transform transition-all hover:scale-105 active:scale-95"
                   onClick={() => setGiftOpened(true)}
                 >
                   <img
                     src={giftBox}
-                    className="h-[200px] md:h-[300px] animate-bounce"
+                    className="h-[150px] md:h-[200px] animate-bounce"
                     alt="Gift Box"
                   />
-                  <p className="text-xl font-bold text-rose-600 mt-4 text-center animate-pulse">Tap to open your gift! 🎁</p>
+                  <p className="text-lg font-bold text-rose-600 mt-2 text-center animate-pulse">Tap your gift! 🎁</p>
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center w-full animate__animated animate__zoomIn pt-10">
-                <div className="text-4xl md:text-6xl font-bold mb-8 text-rose-600 text-center" style={{ fontFamily: "Charm, serif" }}>
-                  I Love You !!! ❤️
+              <div className="flex flex-col items-center justify-center w-full animate__animated animate__zoomIn">
+                <img
+                  ref={gifRef}
+                  className="h-[150px] md:h-[180px] rounded-lg mb-4"
+                  src={YesGifs[currentGifIndex]}
+                  alt="Sticker"
+                />
+                <div className="text-3xl md:text-5xl font-bold mb-6 text-rose-600 text-center" style={{ fontFamily: "Charm, serif" }}>
+                  Happy Valentine’s! ❤️
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 md:gap-6 mb-8 w-full">
+                <div className="grid grid-cols-2 gap-3 mb-6 w-full px-2">
                   {GiftPics.map((pic, index) => (
-                    <div key={index} className="aspect-square w-full overflow-hidden rounded-2xl shadow-xl border-4 border-white transform hover:rotate-2 transition-all">
+                    <div
+                      key={index}
+                      className="aspect-square w-full overflow-hidden rounded-xl shadow-lg border-2 border-white cursor-pointer transform hover:scale-105 transition-all"
+                      onClick={() => setPreviewImage(pic)}
+                    >
                       <img
                         src={pic}
                         className="w-full h-full object-cover"
@@ -362,19 +379,14 @@ export default function Page() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-white/40 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50">
-                  <h2 className="text-3xl md:text-5xl font-bold text-rose-600 mb-4" style={{ fontFamily: "Charm, serif" }}>
-                    Happy Valentine’s Day my Shavoo
-                  </h2>
-                  <p className="text-lg md:text-2xl leading-relaxed text-zinc-800 font-medium" style={{ fontFamily: "Charm, serif" }}>
+                <div className="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-xl border border-white/50 mb-6">
+                  <p className="text-base md:text-xl leading-relaxed text-zinc-800 font-medium text-center" style={{ fontFamily: "Charm, serif" }}>
                     "You came into my life and made it warmer, happier, and so much more beautiful.
                     The way you care, the way you smile, and the way you understand me means everything to me.
                     I’m really lucky to have you, and I hope you always know how special you are to me."
                   </p>
                 </div>
-                <div className="mt-8">
-                  <WordMareque />
-                </div>
+                <WordMareque />
               </div>
             )}
           </div>
@@ -425,11 +437,33 @@ export default function Page() {
           </>
         )}
         <button
-          className="fixed bottom-10 right-10 bg-gray-200 p-1 mb-2 rounded-full hover:bg-gray-300"
+          className="fixed bottom-10 right-10 bg-gray-200 p-1 mb-2 rounded-full hover:bg-gray-300 z-20"
           onClick={toggleMute}
         >
           {isMuted ? <BsVolumeMuteFill size={26} /> : <BsVolumeUpFill size={26} />}
         </button>
+
+        {/* Image Preview Modal */}
+        {previewImage && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 animate__animated animate__fadeIn"
+            onClick={() => setPreviewImage(null)}
+          >
+            <div className="relative max-w-full max-h-full">
+              <img
+                src={previewImage}
+                className="max-w-full max-h-[90vh] rounded-lg shadow-2xl"
+                alt="Preview"
+              />
+              <button
+                className="absolute -top-10 right-0 text-white text-3xl font-bold"
+                onClick={() => setPreviewImage(null)}
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
