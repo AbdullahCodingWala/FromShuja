@@ -267,7 +267,7 @@ export default function Page() {
   useEffect(() => {
     if (yesPressed && noCount > 3 && !yespopupShown) {
       Swal.fire({
-        title: "I love you so much!! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you.</br> Will you be the love of my life forever?",
+        title: "Happy Valentine’s Day my Shavoo. You came into my life and made it warmer, happier, and so much more beautiful. The way you care, the way you smile, and the way you understand me means everything to me. I’m really lucky to have you, and I hope you always know how special you are to me.",
         width: 800,
         padding: "2em",
         color: "#716add",
@@ -365,9 +365,7 @@ export default function Page() {
                 </div>
                 <div className="bg-white/70 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 mb-2 w-full">
                   <p className="text-sm md:text-lg leading-snug text-zinc-800 font-medium text-center" style={{ fontFamily: "Charm, serif" }}>
-                    "You came into my life and made it warmer, happier, and so much more beautiful.
-                    The way you care, the way you smile, and the way you understand me means everything to me.
-                    I’m really lucky to have you, and I hope you always know how special you are to me."
+                    "I love you so much!! ❤️ You are my everything, my joy, my forever. Every moment with you is a memory I’ll cherish forever, and my heart beats only for you. Will you be the love of my life forever?"
                   </p>
                 </div>
                 <WordMareque />
