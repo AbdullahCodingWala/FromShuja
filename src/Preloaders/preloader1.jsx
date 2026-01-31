@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const HeartCanvas = () => {
   const canvasRef = useRef(null);
-  
+
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = window.innerWidth;
@@ -197,7 +197,7 @@ const HeartCanvas = () => {
     const timeHandle = gl.getUniformLocation(program, 'time');
     const widthHandle = gl.getUniformLocation(program, 'width');
     const heightHandle = gl.getUniformLocation(program, 'height');
-    
+
     gl.uniform1f(widthHandle, window.innerWidth);
     gl.uniform1f(heightHandle, window.innerHeight);
 

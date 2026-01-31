@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import "./MouseStealer.css";
 
 const CONSTANTS = {
@@ -56,6 +57,11 @@ const GrabZone = ({ cursorGrabbed, onCursorGrabbed }) => {
   );
 };
 
+GrabZone.propTypes = {
+  cursorGrabbed: PropTypes.bool.isRequired,
+  onCursorGrabbed: PropTypes.func.isRequired
+};
+
 const Grabber = ({ cursorGrabbed, onCursorGrabbed, active, near }) => {
   const ref = useRef(null);
   const [stealing, setStealing] = useState(false);
@@ -77,12 +83,12 @@ const Grabber = ({ cursorGrabbed, onCursorGrabbed, active, near }) => {
   return (
     <div
       className={`grabber ${stealing
-          ? "grabber--stealing"
-          : cursorGrabbed
-            ? "grabber--grabbed"
-            : near
-              ? "grabber--near"
-              : "grabber--waiting"
+        ? "grabber--stealing"
+        : cursorGrabbed
+          ? "grabber--grabbed"
+          : near
+            ? "grabber--near"
+            : "grabber--waiting"
         }`}
       ref={ref}
       onMouseEnter={handleMouseEnter}
@@ -99,6 +105,13 @@ const Grabber = ({ cursorGrabbed, onCursorGrabbed, active, near }) => {
       />
     </div>
   );
+};
+
+Grabber.propTypes = {
+  cursorGrabbed: PropTypes.bool.isRequired,
+  onCursorGrabbed: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  near: PropTypes.bool.isRequired
 };
 
 const App = () => {

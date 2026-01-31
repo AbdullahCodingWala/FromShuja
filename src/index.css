@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charm:wght@400;700&family=Elsie:wght@400;900&family=Great+Vibes&family=MonteCarlo&family=Parisienne&family=Prata&family=Quintessential&family=Square+Peg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charm:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Elsie:wght@400;900&family=Great+Vibes&family=MonteCarlo&family=Parisienne&family=Prata&family=Quintessential&family=Square+Peg&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   font-family: "Protest Riot", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,6 +19,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 body {
   /* background: url("./assets/bg1.webp"); */
   background-position: center;
@@ -34,10 +37,12 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
+
   50% {
     transform: translateY(-20px);
     opacity: 0.8;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
