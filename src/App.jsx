@@ -103,7 +103,7 @@ export default function Page() {
     const gifs = [];
     const positions = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const newPosition = generateRandomPositionWithSpacing(positions);
       positions.push(newPosition);
 
@@ -124,7 +124,7 @@ export default function Page() {
     const gifs = [];
     const positions = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const newPosition = generateRandomPositionWithSpacing(positions);
       positions.push(newPosition);
 
@@ -328,7 +328,7 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="overflow-y-auto flex flex-col items-center pt-2 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-8 px-4">
+      <div className="relative z-10 overflow-y-auto flex flex-col items-center pt-2 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-8 px-4">
         {yesPressed && noCount > 3 ? (
           <div className="flex flex-col items-center justify-center w-full max-w-md animate__animated animate__fadeIn mt-4">
             {!giftOpened ? (
@@ -373,6 +373,7 @@ export default function Page() {
                     >
                       <img
                         src={pic}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                         alt={`Memory ${index + 1}`}
                       />
@@ -454,6 +455,7 @@ export default function Page() {
             <div className="relative max-w-full max-h-full">
               <img
                 src={previewImage}
+                loading="eager"
                 className="max-w-full max-h-[90vh] rounded-lg shadow-2xl"
                 alt="Preview"
               />
