@@ -12,6 +12,14 @@ import WordMareque from './MarqueeProposal.jsx';
 import purposerose from './assets/GifData/RoseCute.gif';
 import swalbg from './assets/Lovingbg2_main.jpg';
 import loveu from './assets/GifData/cutieSwal4.gif';
+import giftBox from './assets/gift.png';
+
+import giftPic1 from './assets/GiftImages/pic1.png';
+import giftPic2 from './assets/GiftImages/pic2.png';
+import giftPic3 from './assets/GiftImages/pic3.png';
+import giftPic4 from './assets/GiftImages/pic4.jpg';
+
+const GiftPics = [giftPic1, giftPic2, giftPic3, giftPic4];
 
 //! yes - Gifs Importing
 import yesgif0 from "./assets/GifData/Yes/lovecutie0.gif";
@@ -63,6 +71,7 @@ export default function Page() {
   const [isMuted, setIsMuted] = useState(false);
   const [popupShown, setPopupShown] = useState(false);
   const [yespopupShown, setYesPopupShown] = useState(false);
+  const [giftOpened, setGiftOpened] = useState(false);
 
   const gifRef = useRef(null); // Ref to ensure gif plays infinitely
   const yesButtonSize = noCount * 16 + 16;
@@ -320,17 +329,47 @@ export default function Page() {
 
       <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
         {yesPressed && noCount > 3 ? (
-          <>
-            <img
-              ref={gifRef}
-              className="h-[230px] rounded-lg"
-              src={YesGifs[currentGifIndex]}
-              alt="Yes Response"
-            />
-            <div className="text-4xl md:text-6xl font-bold my-2" style={{ fontFamily: "Charm, serif", fontWeight: "700", fontStyle: "normal" }}>I Love You !!!</div>
-            <div className="text-4xl md:text-4xl font-bold my-1" style={{ fontFamily: "Beau Rivage, serif", fontWeight: "500", fontStyle: "normal" }}> You’re the love of my life. </div>
-            <WordMareque />
-          </>
+          <div className="flex flex-col items-center justify-center animate__animated animate__fadeIn">
+            {!giftOpened ? (
+              <div
+                className="cursor-pointer transform transition-transform hover:scale-110 active:scale-95"
+                onClick={() => setGiftOpened(true)}
+              >
+                <img
+                  src={giftBox}
+                  className="h-[250px] animate-bounce"
+                  alt="Gift Box"
+                />
+                <p className="text-xl font-bold text-rose-600 mt-4 text-center animate-pulse">Tap to open your gift! 🎁</p>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center max-w-4xl px-4 text-center animate__animated animate__zoomIn">
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  {GiftPics.map((pic, index) => (
+                    <img
+                      key={index}
+                      src={pic}
+                      className="h-32 md:h-64 w-full object-cover rounded-2xl shadow-xl border-4 border-white transform hover:scale-105 transition-all"
+                      alt={`Memory ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <div className="bg-white/40 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50">
+                  <h2 className="text-3xl md:text-5xl font-bold text-rose-600 mb-4" style={{ fontFamily: "Charm, serif" }}>
+                    Happy Valentine’s Day my Shavoo
+                  </h2>
+                  <p className="text-lg md:text-2xl leading-relaxed text-zinc-800 font-medium" style={{ fontFamily: "Charm, serif" }}>
+                    "You came into my life and made it warmer, happier, and so much more beautiful.
+                    The way you care, the way you smile, and the way you understand me means everything to me.
+                    I’m really lucky to have you, and I hope you always know how special you are to me."
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <WordMareque />
+                </div>
+              </div>
+            )}
+          </div>
         ) : (
           <>
             <img
