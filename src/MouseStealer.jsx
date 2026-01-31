@@ -23,13 +23,16 @@ const GrabZone = ({ cursorGrabbed, onCursorGrabbed }) => {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const isNear =
-        e.clientX > window.innerWidth * 0.6 &&
-        e.clientX < window.innerWidth * 0.7 &&
-        e.clientY > window.innerHeight - 400;
-      const isIn = e.clientX >= window.innerWidth * 0.7 && e.clientY > window.innerHeight - 400;
-      setNearZone(isNear);
-      setInZone(isIn);
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      const isNear = mouseX > width * 0.6 && mouseX < width * 0.7 && mouseY > height - 400;
+      const isIn = mouseX >= width * 0.7 && mouseY > height - 400;
+
+      setNearZone(prev => prev !== isNear ? isNear : prev);
+      setInZone(prev => prev !== isIn ? isIn : prev);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -40,9 +43,8 @@ const GrabZone = ({ cursorGrabbed, onCursorGrabbed }) => {
 
   return (
     <div
-      className={`grab-zone ${
-        inZone ? "grab-zone--active" : nearZone ? "grab-zone--peek" : ""
-      }`}
+      className={`grab-zone ${inZone ? "grab-zone--active" : nearZone ? "grab-zone--peek" : ""
+        }`}
     >
       <Grabber
         cursorGrabbed={cursorGrabbed}
@@ -74,15 +76,14 @@ const Grabber = ({ cursorGrabbed, onCursorGrabbed, active, near }) => {
 
   return (
     <div
-      className={`grabber ${
-        stealing
+      className={`grabber ${stealing
           ? "grabber--stealing"
           : cursorGrabbed
-          ? "grabber--grabbed"
-          : near
-          ? "grabber--near"
-          : "grabber--waiting"
-      }`}
+            ? "grabber--grabbed"
+            : near
+              ? "grabber--near"
+              : "grabber--waiting"
+        }`}
       ref={ref}
       onMouseEnter={handleMouseEnter}
     >
@@ -110,16 +111,16 @@ const App = () => {
     if (grabberElement) {
       grabberElement.style.cursor = "none"; // Hide cursor on grabber
     }
-  
+
     setTimeout(() => {
       setCursorGrabbed(false);
-      document.body.style.cursor = ""; 
+      document.body.style.cursor = "";
       if (grabberElement) {
-        grabberElement.style.cursor = ""; 
+        grabberElement.style.cursor = "";
       }
     }, 8000); // Release the grab after 8 seconds
   };
-  
+
   return (
     <div>
       <GrabZone cursorGrabbed={cursorGrabbed} onCursorGrabbed={handleCursorGrabbed} />

@@ -164,11 +164,7 @@ export default function Page() {
     }
   }, [yesPressed]);
 
-  useEffect(() => {
-    if (gifRef.current) {
-      gifRef.current.src = gifRef.current.src; // Reset gif to ensure it loops infinitely
-    }
-  }, [noCount]);
+  // Standard Gifs loop automatically, no need to reset src on every noCount change
 
   const handleNoClick = () => {
     const nextCount = noCount + 1;
