@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Spline from "@splinetool/react-spline";
 import Swal from "sweetalert2";
-import { BsVolumeUpFill, BsVolumeMuteFill } from "react-icons/bs";
+// import { BsVolumeUpFill, BsVolumeMuteFill } from "react-icons/bs";
 
 import MouseStealing from './MouseStealer.jsx';
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
@@ -46,6 +46,7 @@ import nogif6 from "./assets/GifData/No/breakRej6.gif";
 import nogif7 from "./assets/GifData/No/RejectNo.gif";
 import nogif8 from "./assets/GifData/No/breakRej7.gif";
 
+/*
 //! yes - Music Importing
 import yesmusic1 from "./assets/AudioTracks/Love_LoveMeLikeYouDo.mp3";
 import yesmusic2 from "./assets/AudioTracks/Love_EDPerfect.mp3";
@@ -57,11 +58,12 @@ import nomusic2 from "./assets/AudioTracks/Rejection_LoseYouToLoveMe.mp3";
 import nomusic3 from "./assets/AudioTracks/Reject_withoutMe.mp3";
 import nomusic4 from "./assets/AudioTracks/Neutral_Base_IHateU.mp3";
 import nomusic5 from "./assets/AudioTracks/Reject1_TooGood.mp3";
+*/
 
 const YesGifs = [yesgif0, yesgif1, yesgif2, yesgif3, yesgif4, yesgif5, yesgif6, yesgif7, yesgif8, yesgif9, yesgif10, yesgif11];
 const NoGifs = [nogif0, nogif0_1, nogif1, nogif2, nogif3, nogif4, nogif5, nogif6, nogif7, nogif8];
-const YesMusic = [yesmusic1, yesmusic3, yesmusic4, yesmusic2];
-const NoMusic = [nomusic1, nomusic2, nomusic3, nomusic4, nomusic5];
+const YesMusic = []; // [yesmusic1, yesmusic3, yesmusic4, yesmusic2];
+const NoMusic = []; // [nomusic1, nomusic2, nomusic3, nomusic4, nomusic5];
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
@@ -195,26 +197,11 @@ export default function Page() {
   };
 
   const playMusic = (url, musicArray) => {
-    if (currentAudio) {
-      currentAudio.pause(); // Stop the currently playing song
-      currentAudio.currentTime = 0; // Reset to the start
-    }
-    const audio = new Audio(url);
-    audio.muted = isMuted;
-    setCurrentAudio(audio); // Set the new audio as the current one
-    audio.addEventListener('ended', () => {
-      const currentIndex = musicArray.indexOf(url);
-      const nextIndex = (currentIndex + 1) % musicArray.length;
-      playMusic(musicArray[nextIndex], musicArray); // Play the next song in the correct array
-    });
-    audio.play();
+    // Music disabled temporarily
   };
 
   const toggleMute = () => {
-    if (currentAudio) {
-      currentAudio.muted = !isMuted;
-    }
-    setIsMuted(!isMuted);
+    // Music disabled temporarily
   };
 
   const getNoButtonText = () => {
@@ -433,12 +420,7 @@ export default function Page() {
             ))}
           </div>
         )}
-        <button
-          className="fixed bottom-10 right-10 bg-gray-200 p-1 mb-2 rounded-full hover:bg-gray-300 z-20"
-          onClick={toggleMute}
-        >
-          {isMuted ? <BsVolumeMuteFill size={26} /> : <BsVolumeUpFill size={26} />}
-        </button>
+        {/* Mute button removed temporarily */}
 
         {/* Image Preview Modal */}
         {previewImage && (
