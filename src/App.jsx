@@ -324,7 +324,7 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="relative z-10 overflow-y-auto flex flex-col items-center pt-2 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-8 px-4">
+      <div className="relative z-10 overflow-y-auto flex flex-col items-center pt-2 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-2 px-4">
         {yesPressed && noCount > 3 ? (
           <div className="flex flex-col items-center justify-center w-full max-w-md animate__animated animate__fadeIn mt-4">
             {!giftOpened ? (
@@ -376,16 +376,14 @@ export default function Page() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-white/70 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 mb-4 w-full">
+                <div className="bg-white/70 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 mb-2 w-full">
                   <p className="text-sm md:text-lg leading-snug text-zinc-800 font-medium text-center" style={{ fontFamily: "Charm, serif" }}>
                     "You came into my life and made it warmer, happier, and so much more beautiful.
                     The way you care, the way you smile, and the way you understand me means everything to me.
                     I’m really lucky to have you, and I hope you always know how special you are to me."
                   </p>
                 </div>
-                <div className="scale-90 md:scale-100">
-                  <WordMareque />
-                </div>
+                <WordMareque />
               </div>
             )}
           </div>

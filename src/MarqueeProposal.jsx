@@ -29,15 +29,13 @@ const MarqueeProposal = () => {
   return (
     <div
       style={{
-        width: "50%",
-        height: "75px",
-        margin: "50px auto",
-        borderRadius: "25px",
+        width: "90%",
+        height: "50px",
+        margin: "10px auto",
+        borderRadius: "15px",
         overflow: "hidden",
         position: "relative",
         background: "transparent",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
-        border: "4px solid #ffffff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -54,12 +52,12 @@ const MarqueeProposal = () => {
         <span
           style={{
             fontSize: "2rem",
-            fontFamily: "Charm, serif", 
+            fontFamily: "Charm, serif",
             // fontFamily: "Beau Rivage, serif", 
             fontStyle: "normal",
             fontWeight: "700",
-            color: "#191a19",
-            textShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
+            color: "#ffffff",
+            textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
           }}
         >
           {sentences[currentIndex]}
