@@ -328,47 +328,47 @@ export default function Page() {
 
       {noCount > 16 && noCount < 25 && yesPressed == false && <MouseStealing />}
 
-      <div className="overflow-y-auto flex flex-col items-center pt-4 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-10 px-4">
+      <div className="overflow-y-auto flex flex-col items-center pt-2 min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900 pb-8 px-4">
         {yesPressed && noCount > 3 ? (
-          <div className="flex flex-col items-center justify-center w-full max-w-lg animate__animated animate__fadeIn mt-10">
+          <div className="flex flex-col items-center justify-center w-full max-w-md animate__animated animate__fadeIn mt-4">
             {!giftOpened ? (
               <div className="flex flex-col items-center w-full">
                 <img
                   ref={gifRef}
-                  className="h-[180px] md:h-[230px] rounded-lg mb-6 shadow-lg"
+                  className="h-[140px] md:h-[230px] rounded-lg mb-4 shadow-lg"
                   src={YesGifs[currentGifIndex]}
                   alt="Sticker"
                 />
-                <div className="text-3xl md:text-5xl font-bold mb-6 text-center text-rose-600" style={{ fontFamily: "Charm, serif" }}>I Love You !!! ❤️</div>
+                <div className="text-2xl md:text-5xl font-bold mb-4 text-center text-rose-600" style={{ fontFamily: "Charm, serif" }}>I Love You !!! ❤️</div>
                 <div
                   className="cursor-pointer transform transition-all hover:scale-105 active:scale-95"
                   onClick={() => setGiftOpened(true)}
                 >
                   <img
                     src={giftBox}
-                    className="h-[150px] md:h-[200px] animate-bounce"
+                    className="h-[120px] md:h-[200px] animate-bounce"
                     alt="Gift Box"
                   />
-                  <p className="text-lg font-bold text-rose-600 mt-2 text-center animate-pulse">Tap your gift! 🎁</p>
+                  <p className="text-base font-bold text-rose-600 mt-1 text-center animate-pulse">Tap your gift! 🎁</p>
                 </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center w-full animate__animated animate__zoomIn">
                 <img
                   ref={gifRef}
-                  className="h-[150px] md:h-[180px] rounded-lg mb-4"
+                  className="h-[110px] md:h-[180px] rounded-lg mb-2"
                   src={YesGifs[currentGifIndex]}
                   alt="Sticker"
                 />
-                <div className="text-3xl md:text-5xl font-bold mb-6 text-rose-600 text-center" style={{ fontFamily: "Charm, serif" }}>
+                <div className="text-2xl md:text-3xl font-bold mb-4 text-rose-600 text-center" style={{ fontFamily: "Charm, serif" }}>
                   Happy Valentine’s! ❤️
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 mb-6 w-full px-2">
+                <div className="grid grid-cols-2 gap-2 mb-4 w-full px-1">
                   {GiftPics.map((pic, index) => (
                     <div
                       key={index}
-                      className="aspect-square w-full overflow-hidden rounded-xl shadow-lg border-2 border-white cursor-pointer transform hover:scale-105 transition-all"
+                      className="aspect-square w-full overflow-hidden rounded-lg shadow-md border border-white cursor-pointer transform hover:scale-105 transition-all"
                       onClick={() => setPreviewImage(pic)}
                     >
                       <img
@@ -379,31 +379,33 @@ export default function Page() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-xl border border-white/50 mb-6">
-                  <p className="text-base md:text-xl leading-relaxed text-zinc-800 font-medium text-center" style={{ fontFamily: "Charm, serif" }}>
+                <div className="bg-white/70 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 mb-4 w-full">
+                  <p className="text-sm md:text-lg leading-snug text-zinc-800 font-medium text-center" style={{ fontFamily: "Charm, serif" }}>
                     "You came into my life and made it warmer, happier, and so much more beautiful.
                     The way you care, the way you smile, and the way you understand me means everything to me.
                     I’m really lucky to have you, and I hope you always know how special you are to me."
                   </p>
                 </div>
-                <WordMareque />
+                <div className="scale-90 md:scale-100">
+                  <WordMareque />
+                </div>
               </div>
             )}
           </div>
         ) : (
-          <>
+          <div className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-md">
             <img
               src={lovesvg}
-              className="fixed animate-pulse top-10 md:left-15 left-6 md:w-40 w-28"
+              className="fixed animate-pulse top-6 md:left-15 left-6 md:w-40 w-24"
               alt="Love SVG"
             />
             <img
               ref={gifRef}
-              className="h-[230px] rounded-lg"
+              className="h-[180px] md:h-[230px] rounded-lg"
               src={Lovegif}
               alt="Love Animation"
             />
-            <h1 className="text-4xl md:text-6xl my-4 text-center">
+            <h1 className="text-3xl md:text-6xl my-4 text-center px-2">
               Will you be my Valentine?
             </h1>
             <div className="flex flex-wrap justify-center gap-2 items-center">
@@ -411,7 +413,7 @@ export default function Page() {
                 onMouseEnter={handleMouseEnterYes}
                 onMouseLeave={handleMouseLeave}
                 className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
-                style={{ fontSize: yesButtonSize }}
+                style={{ fontSize: Math.min(yesButtonSize, 100) }}
                 onClick={handleYesClick}
               >
                 Yes
@@ -430,11 +432,11 @@ export default function Page() {
                 key={gif.id}
                 src={gif.src}
                 alt="Floating Animation"
-                className="absolute w-12 h-12 animate-bounce"
+                className="absolute w-10 h-10 animate-bounce"
                 style={gif.style}
               />
             ))}
-          </>
+          </div>
         )}
         <button
           className="fixed bottom-10 right-10 bg-gray-200 p-1 mb-2 rounded-full hover:bg-gray-300 z-20"
